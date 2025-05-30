@@ -1,18 +1,12 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Amit DJ</title>
-    </head>
-    <body>
-        <header>
-            <h1><a href="/">Amit's Blog</a></h1>
-        </header>
-        {% for post in posts %}
-            <article>
-                <h2><a href="">{{post.title}}</a></h2>
-                <p>{{post.text | linebreaksbr}}</p>
-                <time>Published: {{post.published_date}}</time>
-            </article>
-        {% endfor %}
-    </body>
-</html>
+{% extends "blog/base.html" %}
+{% block title%}Blog Posts - Amit DJ{% endblock%}
+
+{% block content%}
+    {% for post in posts%}
+        <article class = "blog-post">
+            <h2 class = "post-title"><a href="{% url 'post_detail' pk=post.pk %}" class = "post-title-link">{{ post.title}}</a></h2>
+            <p class = "post-content">{{ post.text | linebreaksbr}}</p>
+            <time class = "post-time">Published: {{ post.published_date}}</time>
+        </article>
+    {% endfor %}
+{% endblock %}
